@@ -22,7 +22,7 @@
 	// shows the raw php data
 	echo("\n</pre>\n");
 
-	// var_dump() => a more verbose way of "dumping an array" (prints out false)
+	var_dump() // => a more verbose way of "dumping an array" (prints out false)
 
 	// push stuff to the array
 	$va = array();
@@ -73,6 +73,3 @@
 			'clips' => "Paperclips") 
 	);
 ?>
-
-
-<!-- Array functions -->

@@ -54,7 +54,7 @@
 
 	/* Casting - PHP converts expression values silently and aggressively */
 	$a = "100" + 36.23 + TRUE;
-	echo "D: " . $d . "\n"; // => D: 137.23, PHP converts TRUE into 1, FASLE into invisible 0
+	echo "D: " . $d . "\n"; // => D: 137.23, PHP converts TRUE into 1, FASLE into 0 (which outputs nothing)
 
 	// Eqaulity operator (" == ") => converts the types of the two values that is checking
 	// Identity oprator (" === ") => also checks the data type
@@ -75,7 +75,7 @@
 	$fuel = 10;
 	while ( $fuel > 1) {
 		print "Vroom vroom \n";
-		$fule = $fule - 1;
+		$fuel = $fuel - 1;
 	}
 
 	$count = 1;
