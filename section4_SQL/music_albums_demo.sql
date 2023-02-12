@@ -83,3 +83,116 @@ FROM Track JOIN Genre;
 /* can get pretty complex */
 SELECT Track.title, Artist.name, Album.title, Genre.name FROM Track JOIN Genre JOIN Album JOIN Artist ON Track.genre_id = Genre.genre_id AND Track.album_id = Album.album_id AND Album.artist_id = Artist.artist_id
 
+
+/* Assignment */
+INSERT INTO Artist (name) VALUES ('Drake');
+INSERT INTO Artist (name) VALUES ('J.Cole');
+INSERT INTO Artist (name) VALUES ('Tupac');
+
+INSERT INTO Genre (name) VALUES ('Rap');
+INSERT INTO Genre (name) VALUES ('Hip=Hop');
+INSERT INTO Genre (name) VALUES ('Rock');
+INSERT INTO Genre (name) VALUES ('R&B');
+
+INSERT INTO Album (title, artist_id) VALUES ('Take Care', 1);
+INSERT INTO Album (title, artist_id) VALUES ('More Life', 1);
+INSERT INTO Album (title, artist_id) VALUES ('4 your eyez only', 2);
+INSERT INTO Album (title, artist_id) VALUES ('all eyez on me', 3);
+
+/* Drake */
+INSERT INTO Track 
+  (title, rating, len, count, album_id, genre_id) 
+  VALUES ('Marvin Room', 5, 297, 0, 1, 4);
+ 
+INSERT INTO Track 
+  (title, rating, len, count, album_id, genre_id) 
+  VALUES ('Take care', 5, 345, 0, 1, 4);
+ 
+INSERT INTO Track 
+  (title, rating, len, count, album_id, genre_id) 
+  VALUES ('Underground Kings', 5, 427, 0, 1, 4);
+ 
+INSERT INTO Track 
+  (title, rating, len, count, album_id, genre_id) 
+  VALUES ('Good ones go', 5, 497, 0, 1, 4);
+
+INSERT INTO Track 
+  (title, rating, len, count, album_id, genre_id) 
+  VALUES ('HYFR', 5, 347, 0, 1, 4);
+
+/* Drake 2 */
+INSERT INTO Track 
+  (title, rating, len, count, album_id, genre_id) 
+  VALUES ('Passionfruit', 5, 297, 0, 2, 4);
+ 
+INSERT INTO Track 
+  (title, rating, len, count, album_id, genre_id) 
+  VALUES ('Blem', 5, 345, 0, 2, 4);
+ 
+INSERT INTO Track 
+  (title, rating, len, count, album_id, genre_id) 
+  VALUES ('Gyalchester', 5, 427, 0, 2, 4);
+ 
+INSERT INTO Track 
+  (title, rating, len, count, album_id, genre_id) 
+  VALUES ('Portland', 5, 497, 0, 2, 4);
+
+INSERT INTO Track 
+  (title, rating, len, count, album_id, genre_id) 
+  VALUES ('Free Smoke', 5, 347, 0, 2, 4);
+
+/* J.Cole */
+INSERT INTO Track 
+  (title, rating, len, count, album_id, genre_id) 
+  VALUES ('4 your eyez only', 5, 297, 0, 3, 2);
+ 
+INSERT INTO Track 
+  (title, rating, len, count, album_id, genre_id) 
+  VALUES ('Deja vu', 5, 345, 0, 3, 2);
+ 
+INSERT INTO Track 
+  (title, rating, len, count, album_id, genre_id) 
+  VALUES ('She is mine', 5, 427, 0, 3, 2);
+ 
+INSERT INTO Track 
+  (title, rating, len, count, album_id, genre_id) 
+  VALUES ('Folding Clothes', 5, 497, 0, 3, 2);
+
+INSERT INTO Track 
+  (title, rating, len, count, album_id, genre_id) 
+  VALUES ('Change', 5, 347, 0, 3, 2);
+ 
+/* Tupac */
+INSERT INTO Track 
+  (title, rating, len, count, album_id, genre_id) 
+  VALUES ('All About U', 5, 297, 0, 4, 1);
+ 
+INSERT INTO Track 
+  (title, rating, len, count, album_id, genre_id) 
+  VALUES ('No More Pain', 5, 345, 0, 4, 1);
+ 
+INSERT INTO Track 
+  (title, rating, len, count, album_id, genre_id) 
+  VALUES ('Heartz of a Men', 5, 427, 0, 4, 1);
+ 
+INSERT INTO Track 
+  (title, rating, len, count, album_id, genre_id) 
+  VALUES ('Life Goes On', 5, 497, 0, 4, 1);
+
+INSERT INTO Track 
+  (title, rating, len, count, album_id, genre_id) 
+  VALUES ('Skandalouz', 5, 347, 0, 4, 1);
+
+
+/* all the data joined up sorted in ascending order by the album title */
+SELECT Track.title, Artist.name, Album.title, Genre.name
+FROM Track JOIN Genre JOIN Album JOIN Artist
+ON Track.genre_id = Genre.genre_id AND Track.album_id = Album.album_id AND Album.artist_id = Artist.artist_id;
+
+/* all of the genres for a particular artist. */ 
+SELECT DISTINCT Artist.name, Genre.name
+FROM Track JOIN Album JOIN Genre JOIN Artist
+ON Album.album_id = Track.album_id AND Track.genre_id = Genre.genre_id AND Album.artist_id = Artist.artist_id
+WHERE Artist.name = 'Drake';
+ 
+
