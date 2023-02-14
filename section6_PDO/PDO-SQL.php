@@ -1,6 +1,6 @@
 <?php
 echo "<pre>\n";
-$pdo=new PDO('mysql:host=localhost;port=4307;dbname=misc',
+$pdo=new PDO('mysql:host=127.0.1;port=4307;dbname=misc',
      'fred', 'zap');
 $stmt = $pdo->query("SELECT * FROM users");
 $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
