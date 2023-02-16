@@ -9,7 +9,7 @@ if ( ! isset($_SESSION['email']) ) {
     $name = $_SESSION['email'];
 }
 
-$stmt = $pdo->query("SELECT make, year, mileage, model, auto_id FROM cars");
+$stmt = $pdo->query("SELECT make, model, year, mileage , auto_id FROM cars");
 $cars = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
@@ -33,7 +33,7 @@ if ( isset($_SESSION['success']) ) {
 ?>
 	<h1>Automobiles</h1>
 <?php
-if ( isset($cars) && count($cars) > 1) {
+if ( isset($cars) && count($cars) > 0) {
 	echo('<table class="table">' . "\n");
 	echo "<thead>\n";
 	echo "<tr>\n";
@@ -68,13 +68,13 @@ if ( isset($cars) && count($cars) > 1) {
 		echo "</td>\n";
 	}
 } else {
-	echo "<h3>No row found\n";
+	echo "<h3>No row found</h3>\n";
 }
 ?>
 	</tbody>
 </table>
 
-	<a href="add.php">Add New</a> | 
-	<a href="logout.php">Logout</a>
+	<a href="add.php"><button>Add New</button></a> | 
+	<a href="logout.php"><button>Logout</button></a>
 </body>
 </html>
