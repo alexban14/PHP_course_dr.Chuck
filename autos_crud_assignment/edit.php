@@ -14,10 +14,18 @@ if ( !isset($_GET['auto_id']) ) {
 
 if (
     isset($_POST['make']) && isset($_POST['model'])
-    && isset($_POST['year']) && isset($_POST['mileage']) 
-    && strlen($_POST['make']) > 1 && strlen($_POST['model']) > 1
-        && is_numeric($_POST['year'] && is_numeric($_POST['mileage']))
+    && isset($_POST['year']) && isset($_POST['mileage'])
     ) {
+
+        if (
+            strlen($_POST['make']) < 1 || strlen($_POST['model']) < 1
+            || !is_numeric($_POST['year']) || !is_numeric($_POST['mileage'])
+        ) {
+            $_SESSION['error'] = 'All fileds are required';
+            header('Location: edit.php?auto_id=' . $_GET['auto_id']);
+            return; 
+        }
+
         $sql = "UPDATE cars SET make = :make,
             model = :model,
             year = :year,
@@ -33,10 +41,9 @@ if (
         ));
         header('Location: view.php');
         return;
-} else {
-    $_SESSION['error'] = 'All fileds are required';
-    header('Location: edit.php?auto_id=' . $car['auto_id']);
-}
+} // else {
+    
+// }
 
 
 $stmt = $pdo->prepare("SELECT * FROM cars where auto_id = :xyz");
@@ -72,7 +79,7 @@ unset($_SESSION['error']);
         <p>Mileage:
         <input type="text" name="mileage" value="<?= htmlentities($car['mileage']) ?>"></p>
         <input type="hidden" name="auto_id" value="<?= htmlentities($car['auto_id']) ?>">
-        <p><input type="submit" value="Update"/>
+        <p><input type="submit" value="Save"/>
         <a href="view.php">Cancel</a></p>
     </form>
 </div>

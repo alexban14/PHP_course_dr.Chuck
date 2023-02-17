@@ -74,7 +74,7 @@ if ( isset($cars) && count($cars) > 0) {
 	</tbody>
 </table>
 
-	<a href="add.php"><button>Add New</button></a> | 
+	<a href="add.php"><button>Add New Entry</button></a> | 
 	<a href="logout.php"><button>Logout</button></a>
 </body>
 </html>

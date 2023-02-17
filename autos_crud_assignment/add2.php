@@ -16,22 +16,15 @@ if ( isset($_POST['cancel']) ) {
     return;
 }
 
-if ( isset($_POST['make']) && isset($_POST['model'])
-     && isset($_POST['year']) && isset($_POST['mileage']) ) {
-
-    // Data validation
-    if ( strlen($_POST['make']) < 1 || strlen($_POST['model']) < 1) {
-        $_SESSION['error'] = 'All fields are required';
-        header("Location: add.php");
-        return;
-    }
-
-    if ( !is_numeric($_POST['year']) || !is_numeric($_POST['mileage']) ) {
-        $_SESSION['error'] = 'MIleage and year must be numeric';
-        header("Location: add.php");
-        return;
-    }
-
+if ( isset($_POST['mileage']) && !is_numeric($_POST['mileage']) ) {
+    $_SESSION['error'] = 'Mileage must be numeric';
+    header('Location: add.php');
+    return;
+} else if ( isset($_POST['year']) && !is_numeric($_POST['year']) ) {
+    $_SESSION['error'] = 'Year must be numeric';
+    header('Location: add.php');
+    return;
+} else if ( isset($_POST['make']) && strlen($_POST['make']) > 1 && isset($_POST['model']) && strlen($_POST['model']) > 1 ) {
     $sql = "INSERT INTO cars (make, year, mileage, model)
                 VALUES (:mk, :yr, :mi, :md)";
     $stmt = $pdo->prepare($sql);
@@ -42,8 +35,16 @@ if ( isset($_POST['make']) && isset($_POST['model'])
         ':md' => $_POST['model']
     ));
 
-    $_SESSION['success'] = 'added';
+    $_SESSION['success'] = 'Record inserted';
     header('Location: view.php');
+    return;
+} else if ( isset($_POST['make']) && strlen($_POST['make']) < 1 ) {
+    $_SESSION['error'] = 'Make is required';
+    header('Location: add.php');
+    return;
+} else if ( isset($_POST['model']) && strlen($_POST['model']) < 1 ) {
+    $_SESSION['error'] = 'Model is required';
+    header('Location: add.php');
     return;
 }
 
